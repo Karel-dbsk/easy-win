@@ -78,7 +78,7 @@ footer {
     <div class="card">
         <h2>💎 Accès VIP</h2>
         <p>Accès aux pronostics premium</p>
-        <button onclick="window.location.href='https://ton-lien-stripe.com'">
+        <button onclick="window.location.href='https://buy.stripe.com/14A6oAeTTfjF4Ytc28frW00'">
             Devenir VIP
         </button>
     </div>
@@ -108,7 +108,6 @@ const analyses = [
 "Value bet détecté"
 ];
 
-// Analyse du jour
 function generateAI(){
     let e1 = equipes[Math.floor(Math.random()*equipes.length)];
     let e2 = equipes[Math.floor(Math.random()*equipes.length)];
@@ -127,7 +126,6 @@ function generateAI(){
     "Analyse du " + today.toLocaleDateString();
 }
 
-// Pronostics VIP (20 matchs)
 function genererVIP(){
     let resultat = "";
 
