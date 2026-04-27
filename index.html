@@ -32,7 +32,7 @@ h1 {
     padding:20px;
     margin:20px auto;
     border-radius:15px;
-    max-width:400px;
+    max-width:500px;
     box-shadow:0 0 20px rgba(255,215,0,0.2);
 }
 .vip {
@@ -72,7 +72,7 @@ footer {
 
     <div class="card vip">
         <h2>🔒 Pronostics VIP</h2>
-        <p>Accès réservé aux membres</p>
+        <p id="vip">Chargement des pronostics...</p>
     </div>
 
     <div class="card">
@@ -90,33 +90,65 @@ footer {
 </footer>
 
 <script>
-const matchs = [
-["New York","Chicago"],
-["Miami","Dallas"],
-["Los Angeles","Seattle"],
-["Houston","San Antonio"]
+const equipes = [
+"PSG","Marseille","Lyon","Monaco",
+"Real Madrid","Barcelona","Atletico Madrid",
+"Manchester City","Liverpool","Chelsea","Arsenal",
+"Bayern Munich","Dortmund","Leipzig",
+"Juventus","AC Milan","Inter Milan",
+"LA Galaxy","Inter Miami","New York City",
+"Chicago Fire","Seattle Sounders"
 ];
 
 const analyses = [
 "Victoire probable équipe domicile",
 "Plus de 2.5 buts",
 "Les deux équipes marquent",
-"Match serré"
+"Match serré",
+"Value bet détecté"
 ];
 
+// Analyse du jour
 function generateAI(){
-    const match = matchs[Math.floor(Math.random()*matchs.length)];
-    const analyse = analyses[Math.floor(Math.random()*analyses.length)];
+    let e1 = equipes[Math.floor(Math.random()*equipes.length)];
+    let e2 = equipes[Math.floor(Math.random()*equipes.length)];
+
+    while(e1 === e2){
+        e2 = equipes[Math.floor(Math.random()*equipes.length)];
+    }
+
+    let analyse = analyses[Math.floor(Math.random()*analyses.length)];
 
     document.getElementById("ai").innerText =
-    match[0] + " vs " + match[1] + " → " + analyse;
+    e1 + " vs " + e2 + " → " + analyse;
 
     const today = new Date();
     document.getElementById("date").innerText =
     "Analyse du " + today.toLocaleDateString();
 }
 
+// Pronostics VIP (20 matchs)
+function genererVIP(){
+    let resultat = "";
+
+    for(let i=0;i<20;i++){
+        let e1 = equipes[Math.floor(Math.random()*equipes.length)];
+        let e2 = equipes[Math.floor(Math.random()*equipes.length)];
+
+        while(e1 === e2){
+            e2 = equipes[Math.floor(Math.random()*equipes.length)];
+        }
+
+        let analyse = analyses[Math.floor(Math.random()*analyses.length)];
+
+        resultat += e1 + " vs " + e2 + " → " + analyse + "<br><br>";
+    }
+
+    document.getElementById("vip").innerHTML = resultat;
+}
+
 generateAI();
+genererVIP();
 </script>
 
 </body>
